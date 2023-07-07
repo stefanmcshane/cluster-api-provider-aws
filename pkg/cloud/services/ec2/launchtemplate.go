@@ -19,7 +19,6 @@ package ec2
 import (
 	"encoding/base64"
 	"encoding/json"
-	"fmt"
 	"sort"
 	"strconv"
 	"strings"
@@ -698,9 +697,6 @@ func (s *Service) LaunchTemplateNeedsUpdate(scope scope.LaunchTemplateScope, inc
 	if incoming.InstanceType != existing.InstanceType {
 		return true, nil
 	}
-
-	fmt.Println("STEFANCMP", incoming.InstanceMetadataOptions, existing.InstanceMetadataOptions)
-
 	if !cmp.Equal(incoming.InstanceMetadataOptions, existing.InstanceMetadataOptions) {
 		if incoming.InstanceMetadataOptions.HTTPTokens != existing.InstanceMetadataOptions.HTTPTokens {
 			return true, nil
