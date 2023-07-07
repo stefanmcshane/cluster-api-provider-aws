@@ -710,21 +710,7 @@ func (s *Service) LaunchTemplateNeedsUpdate(scope scope.LaunchTemplateScope, inc
 		return true, nil
 	}
 	if !cmp.Equal(incoming.InstanceMetadataOptions, existing.InstanceMetadataOptions) {
-		if existing.InstanceMetadataOptions == nil || incoming.InstanceMetadataOptions == nil {
-			return true, nil
-		}
-		if incoming.InstanceMetadataOptions.HTTPTokens != existing.InstanceMetadataOptions.HTTPTokens {
-			return true, nil
-		}
-		if incoming.InstanceMetadataOptions.HTTPPutResponseHopLimit != existing.InstanceMetadataOptions.HTTPPutResponseHopLimit {
-			return true, nil
-		}
-		if incoming.InstanceMetadataOptions.HTTPEndpoint != existing.InstanceMetadataOptions.HTTPEndpoint {
-			return true, nil
-		}
-		if incoming.InstanceMetadataOptions.InstanceMetadataTags != existing.InstanceMetadataOptions.InstanceMetadataTags {
-			return true, nil
-		}
+		return true, nil
 	}
 
 	incomingIDs, err := s.GetAdditionalSecurityGroupsIDs(incoming.AdditionalSecurityGroups)
