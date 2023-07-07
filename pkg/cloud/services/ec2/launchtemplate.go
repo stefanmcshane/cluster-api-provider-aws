@@ -698,6 +698,9 @@ func (s *Service) LaunchTemplateNeedsUpdate(scope scope.LaunchTemplateScope, inc
 		return true, nil
 	}
 	if !cmp.Equal(incoming.InstanceMetadataOptions, existing.InstanceMetadataOptions) {
+		if existing.InstanceMetadataOptions == nil || incoming.InstanceMetadataOptions == nil {
+			return true, nil
+		}
 		if incoming.InstanceMetadataOptions.HTTPTokens != existing.InstanceMetadataOptions.HTTPTokens {
 			return true, nil
 		}
