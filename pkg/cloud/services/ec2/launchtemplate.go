@@ -457,7 +457,11 @@ func (s *Service) createLaunchTemplateData(scope scope.LaunchTemplateScope, imag
 	}
 
 	if lt.InstanceMetadataOptions != nil {
-		data.MetadataOptions = &ec2.LaunchTemplateInstanceMetadataOptionsRequest{}
+		data.MetadataOptions = &ec2.LaunchTemplateInstanceMetadataOptionsRequest{
+			HttpEndpoint:         aws.String(string(lt.InstanceMetadataOptions.HTTPEndpoint)),
+			InstanceMetadataTags: aws.String(string(lt.InstanceMetadataOptions.InstanceMetadataTags)),
+		}
+
 		if lt.InstanceMetadataOptions.HTTPTokens != "" {
 			data.MetadataOptions.HttpTokens = aws.String(string(lt.InstanceMetadataOptions.HTTPTokens))
 		}
