@@ -652,6 +652,14 @@ func (s *Service) SDKToLaunchTemplate(d *ec2.LaunchTemplateVersion) (*expinfrav1
 		i.InstanceMetadataOptions = &infrav1.InstanceMetadataOptions{
 			HTTPPutResponseHopLimit: aws.Int64Value(v.MetadataOptions.HttpPutResponseHopLimit),
 			HTTPTokens:              infrav1.HTTPTokensState(aws.StringValue(v.MetadataOptions.HttpTokens)),
+			HTTPEndpoint:            infrav1.InstanceMetadataEndpointStateEnabled,
+			InstanceMetadataTags:    infrav1.InstanceMetadataEndpointStateDisabled,
+		}
+		if v.MetadataOptions.HttpEndpoint != nil && aws.StringValue(v.MetadataOptions.HttpEndpoint) == "disabled" {
+			i.InstanceMetadataOptions.HTTPEndpoint = infrav1.InstanceMetadataEndpointStateDisabled
+		}
+		if v.MetadataOptions.InstanceMetadataTags != nil && aws.StringValue(v.MetadataOptions.InstanceMetadataTags) == "enabled" {
+			i.InstanceMetadataOptions.InstanceMetadataTags = infrav1.InstanceMetadataEndpointStateEnabled
 		}
 	}
 
@@ -705,6 +713,12 @@ func (s *Service) LaunchTemplateNeedsUpdate(scope scope.LaunchTemplateScope, inc
 			return true, nil
 		}
 		if incoming.InstanceMetadataOptions.HTTPPutResponseHopLimit != existing.InstanceMetadataOptions.HTTPPutResponseHopLimit {
+			return true, nil
+		}
+		if incoming.InstanceMetadataOptions.HTTPEndpoint != existing.InstanceMetadataOptions.HTTPEndpoint {
+			return true, nil
+		}
+		if incoming.InstanceMetadataOptions.InstanceMetadataTags != existing.InstanceMetadataOptions.InstanceMetadataTags {
 			return true, nil
 		}
 	}

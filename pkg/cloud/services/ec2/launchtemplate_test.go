@@ -461,7 +461,7 @@ func TestServiceLaunchTemplateNeedsUpdate(t *testing.T) {
 			wantErr: false,
 		},
 		{
-			name: "new launch template instance metadata options",
+			name: "new launch template instance metadata options, requiring IMDSv2",
 			incoming: &expinfrav1.AWSLaunchTemplate{
 				InstanceMetadataOptions: &infrav1.InstanceMetadataOptions{
 					HTTPPutResponseHopLimit: 1,
@@ -471,6 +471,18 @@ func TestServiceLaunchTemplateNeedsUpdate(t *testing.T) {
 			existing: &expinfrav1.AWSLaunchTemplate{},
 			want:     true,
 			wantErr:  false,
+		},
+		{
+			name:     "new launch template instance metadata options, removing IMDSv2 requirement",
+			incoming: &expinfrav1.AWSLaunchTemplate{},
+			existing: &expinfrav1.AWSLaunchTemplate{
+				InstanceMetadataOptions: &infrav1.InstanceMetadataOptions{
+					HTTPPutResponseHopLimit: 1,
+					HTTPTokens:              infrav1.HTTPTokensStateRequired,
+				},
+			},
+			want:    true,
+			wantErr: false,
 		},
 	}
 	for _, tt := range tests {
