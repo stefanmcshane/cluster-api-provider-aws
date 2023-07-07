@@ -34,7 +34,7 @@ To use IMDSv2, please also set `httpPutResponseHopLimit` value to `2`, as it is 
 
 Similarly, this can be done with `AWSManagedMachinePool` for use with EKS Managed Nodegroups. One slight difference here is that you [must use Launch Templates to configure IMDSv2 with Autoscaling Groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-metadata-transition-to-version-2.html). In order to configure the LaunchTemplate, you must use a custom AMI type according to the AWS API. This can be done by setting `AWSManagedMachinePool.spec.amiType` to `CUSTOM`. This change means that you must also specify a bootstrapping script to the worker node, which allows it to be joined to the EKS cluster. The default AWS Managed Node Group bootstrap script can be found [here on Github](https://github.com/awslabs/amazon-eks-ami/blob/master/files/bootstrap.sh).
 
-The following example will use the default Amazon EKS Worker Node AMI which includes the above script. This must be installed on the cluster as a Secret, under the key `value`. The secret's name must then be included in your `MachinePool` manifest at `MachinePool.spec.template.spec.bootstrap.dataSecretName`. Some assumptions are made for this example:
+The following example will use the default Amazon EKS Worker Node AMI which includes the default EKS Bootstrapping script. This must be installed on the management cluster as a Secret, under the key `value`. The secret's name must then be included in your `MachinePool` manifest at `MachinePool.spec.template.spec.bootstrap.dataSecretName`. Some assumptions are made for this example:
 
 - Your cluster name is `capi-imds`, which CAPA renames to `default_capi-imds-control-plane` automatically
 - Your cluster is Kubernetes Version `v1.25.9`
@@ -92,6 +92,6 @@ If your cluster is not named `default_capi-imds-control-plane` in the AWS EKS co
 
 See [the CLI command reference](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ec2/modify-instance-metadata-options.html) for more information.
 
-Before you decide to use IMDSv2 for the cluster instances, please make sure all your applications are compatible to IMDSv2.
+Before you decide to use IMDSv2 for the cluster instances, please make sure all your applications are compatible with IMDSv2.
 
 See the [transition guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-metadata-transition-to-version-2.html#recommended-path-for-requiring-imdsv2) for more information.

@@ -1244,6 +1244,17 @@ create S3 Buckets for workload clusters.
 TODO: This field could be a pointer, but it seems it breaks setting default values?</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>allowAssumeRole</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<p>AllowAssumeRole enables the sts:AssumeRole permission within the CAPA policies</p>
+</td>
+</tr>
 </table>
 </td>
 </tr>
@@ -1443,6 +1454,17 @@ S3Buckets
 <p>S3Buckets, when enabled, will add controller nodes permissions to
 create S3 Buckets for workload clusters.
 TODO: This field could be a pointer, but it seems it breaks setting default values?</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>allowAssumeRole</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<p>AllowAssumeRole enables the sts:AssumeRole permission within the CAPA policies</p>
 </td>
 </tr>
 </tbody>
@@ -5289,6 +5311,18 @@ string
 </tr>
 <tr>
 <td>
+<code>configuration</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Configuration of the EKS addon</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>conflictResolution</code><br/>
 <em>
 <a href="#controlplane.cluster.x-k8s.io/v1beta1.AddonResolution">
@@ -6245,6 +6279,18 @@ string
 </tr>
 <tr>
 <td>
+<code>partition</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Partition is the AWS security partition being used. Defaults to &ldquo;aws&rdquo;</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>sshKeyName</code><br/>
 <em>
 string
@@ -6507,21 +6553,6 @@ OIDCIdentityProviderConfig
 <em>(Optional)</em>
 <p>IdentityProviderconfig is used to specify the oidc provider config
 to be attached with this eks cluster</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>disableVPCCNI</code><br/>
-<em>
-bool
-</em>
-</td>
-<td>
-<p>DisableVPCCNI indicates that the Amazon VPC CNI should be disabled. With EKS clusters the
-Amazon VPC CNI is automatically installed into the cluster. For clusters where you want
-to use an alternate CNI this option provides a way to specify that the Amazon VPC CNI
-should be deleted. You cannot set this to true if you are using the
-Amazon VPC CNI addon.</p>
 </td>
 </tr>
 <tr>
@@ -6651,6 +6682,18 @@ string
 </tr>
 <tr>
 <td>
+<code>partition</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Partition is the AWS security partition being used. Defaults to &ldquo;aws&rdquo;</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>sshKeyName</code><br/>
 <em>
 string
@@ -6913,21 +6956,6 @@ OIDCIdentityProviderConfig
 <em>(Optional)</em>
 <p>IdentityProviderconfig is used to specify the oidc provider config
 to be attached with this eks cluster</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>disableVPCCNI</code><br/>
-<em>
-bool
-</em>
-</td>
-<td>
-<p>DisableVPCCNI indicates that the Amazon VPC CNI should be disabled. With EKS clusters the
-Amazon VPC CNI is automatically installed into the cluster. For clusters where you want
-to use an alternate CNI this option provides a way to specify that the Amazon VPC CNI
-should be deleted. You cannot set this to true if you are using the
-Amazon VPC CNI addon.</p>
 </td>
 </tr>
 <tr>
@@ -7158,6 +7186,18 @@ string
 </td>
 <td>
 <p>Version is the version of the addon to use</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>configuration</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Configuration of the EKS addon</p>
 </td>
 </tr>
 <tr>
@@ -7988,6 +8028,21 @@ KubernetesMapping
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<code>disable</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<p>Disable indicates that the Amazon VPC CNI should be disabled. With EKS clusters the
+Amazon VPC CNI is automatically installed into the cluster. For clusters where you want
+to use an alternate CNI this option provides a way to specify that the Amazon VPC CNI
+should be deleted. You cannot set this to true if you are using the
+Amazon VPC CNI addon.</p>
+</td>
+</tr>
 <tr>
 <td>
 <code>env</code><br/>
@@ -15531,6 +15586,18 @@ string
 </tr>
 <tr>
 <td>
+<code>partition</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Partition is the AWS security partition being used. Defaults to &ldquo;aws&rdquo;</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>sshKeyName</code><br/>
 <em>
 string
@@ -16063,6 +16130,18 @@ string
 </tr>
 <tr>
 <td>
+<code>partition</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Partition is the AWS security partition being used. Defaults to &ldquo;aws&rdquo;</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>sshKeyName</code><br/>
 <em>
 string
@@ -16543,6 +16622,18 @@ string
 </tr>
 <tr>
 <td>
+<code>partition</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Partition is the AWS security partition being used. Defaults to &ldquo;aws&rdquo;</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>sshKeyName</code><br/>
 <em>
 string
@@ -16812,8 +16903,8 @@ set, the value cannot be changed.</p>
 <td>
 <code>scheme</code><br/>
 <em>
-<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBScheme">
-ClassicELBScheme
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ELBScheme">
+ELBScheme
 </a>
 </em>
 </td>
@@ -16855,15 +16946,15 @@ the registered instances in its Availability Zone only.</p>
 <td>
 <code>healthCheckProtocol</code><br/>
 <em>
-<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBProtocol">
-ClassicELBProtocol
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ELBProtocol">
+ELBProtocol
 </a>
 </em>
 </td>
 <td>
 <em>(Optional)</em>
-<p>HealthCheckProtocol sets the protocol type for classic ELB health check target
-default value is ClassicELBProtocolSSL</p>
+<p>HealthCheckProtocol sets the protocol type for ELB health check target
+default value is ELBProtocolSSL</p>
 </td>
 </tr>
 <tr>
@@ -16877,6 +16968,57 @@ default value is ClassicELBProtocolSSL</p>
 <em>(Optional)</em>
 <p>AdditionalSecurityGroups sets the security groups used by the load balancer. Expected to be security group IDs
 This is optional - if not provided new security groups will be created for the load balancer</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ingressRules</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.IngressRule">
+[]IngressRule
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>IngressRules sets the ingress rules for the control plane load balancer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>loadBalancerType</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.LoadBalancerType">
+LoadBalancerType
+</a>
+</em>
+</td>
+<td>
+<p>LoadBalancerType sets the type for a load balancer. The default type is classic.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>disableHostsRewrite</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<p>DisableHostsRewrite disabled the hair pinning issue solution that adds the NLB&rsquo;s address as 127.0.0.1 to the hosts
+file of each instance. This is by default, false.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>preserveClientIP</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<p>PreserveClientIP lets the user control if preservation of client ips must be retained or not.
+If this is enabled 6443 will be opened to 0.0.0.0/0.</p>
 </td>
 </tr>
 </tbody>
@@ -16941,6 +17083,20 @@ string
 </td>
 <td>
 <p>InstanceID is the EC2 instance ID for this machine.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>instanceMetadataOptions</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.InstanceMetadataOptions">
+InstanceMetadataOptions
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>InstanceMetadataOptions is the metadata options for the EC2 instance.</p>
 </td>
 </tr>
 <tr>
@@ -17075,19 +17231,6 @@ will cause additional requests to AWS API and if tags change the attached securi
 </tr>
 <tr>
 <td>
-<code>failureDomain</code><br/>
-<em>
-string
-</em>
-</td>
-<td>
-<p>FailureDomain is the failure domain unique identifier this Machine should be attached to, as defined in Cluster API.
-For this infrastructure provider, the ID is equivalent to an AWS Availability Zone.
-If multiple subnets are matched for the availability zone, the first one returned is picked.</p>
-</td>
-</tr>
-<tr>
-<td>
 <code>subnet</code><br/>
 <em>
 <a href="#infrastructure.cluster.x-k8s.io/v1beta2.AWSResourceReference">
@@ -17209,6 +17352,18 @@ SpotMarketOptions
 <td>
 <em>(Optional)</em>
 <p>SpotMarketOptions allows users to configure instances to be run using AWS Spot instances.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>placementGroupName</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>PlacementGroupName specifies the name of the placement group in which to launch the instance.</p>
 </td>
 </tr>
 <tr>
@@ -17285,6 +17440,20 @@ string
 </tr>
 <tr>
 <td>
+<code>instanceMetadataOptions</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.InstanceMetadataOptions">
+InstanceMetadataOptions
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>InstanceMetadataOptions is the metadata options for the EC2 instance.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>ami</code><br/>
 <em>
 <a href="#infrastructure.cluster.x-k8s.io/v1beta2.AMIReference">
@@ -17415,19 +17584,6 @@ will cause additional requests to AWS API and if tags change the attached securi
 </tr>
 <tr>
 <td>
-<code>failureDomain</code><br/>
-<em>
-string
-</em>
-</td>
-<td>
-<p>FailureDomain is the failure domain unique identifier this Machine should be attached to, as defined in Cluster API.
-For this infrastructure provider, the ID is equivalent to an AWS Availability Zone.
-If multiple subnets are matched for the availability zone, the first one returned is picked.</p>
-</td>
-</tr>
-<tr>
-<td>
 <code>subnet</code><br/>
 <em>
 <a href="#infrastructure.cluster.x-k8s.io/v1beta2.AWSResourceReference">
@@ -17549,6 +17705,18 @@ SpotMarketOptions
 <td>
 <em>(Optional)</em>
 <p>SpotMarketOptions allows users to configure instances to be run using AWS Spot instances.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>placementGroupName</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>PlacementGroupName specifies the name of the placement group in which to launch the instance.</p>
 </td>
 </tr>
 <tr>
@@ -17841,6 +18009,20 @@ string
 </tr>
 <tr>
 <td>
+<code>instanceMetadataOptions</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.InstanceMetadataOptions">
+InstanceMetadataOptions
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>InstanceMetadataOptions is the metadata options for the EC2 instance.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>ami</code><br/>
 <em>
 <a href="#infrastructure.cluster.x-k8s.io/v1beta2.AMIReference">
@@ -17971,19 +18153,6 @@ will cause additional requests to AWS API and if tags change the attached securi
 </tr>
 <tr>
 <td>
-<code>failureDomain</code><br/>
-<em>
-string
-</em>
-</td>
-<td>
-<p>FailureDomain is the failure domain unique identifier this Machine should be attached to, as defined in Cluster API.
-For this infrastructure provider, the ID is equivalent to an AWS Availability Zone.
-If multiple subnets are matched for the availability zone, the first one returned is picked.</p>
-</td>
-</tr>
-<tr>
-<td>
 <code>subnet</code><br/>
 <em>
 <a href="#infrastructure.cluster.x-k8s.io/v1beta2.AWSResourceReference">
@@ -18109,6 +18278,18 @@ SpotMarketOptions
 </tr>
 <tr>
 <td>
+<code>placementGroupName</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>PlacementGroupName specifies the name of the placement group in which to launch the instance.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>tenancy</code><br/>
 <em>
 string
@@ -18191,8 +18372,156 @@ This value is used for autoscaling from zero operations as defined in:
 <h3 id="infrastructure.cluster.x-k8s.io/v1beta2.AWSMachineTemplateWebhook">AWSMachineTemplateWebhook
 </h3>
 <p>
-<p>AWSMachineTemplateWebhook implements a custom validation webhook for AWSMachineTemplate.</p>
+<p>AWSMachineTemplateWebhook implements a custom validation webhook for AWSMachineTemplate.
+Note: we use a custom validator to access the request context for SSA of AWSMachineTemplate.</p>
 </p>
+<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.AWSManagedCluster">AWSManagedCluster
+</h3>
+<p>
+<p>AWSManagedCluster is the Schema for the awsmanagedclusters API</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>metadata</code><br/>
+<em>
+<a href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#objectmeta-v1-meta">
+Kubernetes meta/v1.ObjectMeta
+</a>
+</em>
+</td>
+<td>
+Refer to the Kubernetes API documentation for the fields of the
+<code>metadata</code> field.
+</td>
+</tr>
+<tr>
+<td>
+<code>spec</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.AWSManagedClusterSpec">
+AWSManagedClusterSpec
+</a>
+</em>
+</td>
+<td>
+<br/>
+<br/>
+<table>
+<tr>
+<td>
+<code>controlPlaneEndpoint</code><br/>
+<em>
+<a href="https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api@v1.0.0">
+Cluster API api/v1beta1.APIEndpoint
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ControlPlaneEndpoint represents the endpoint used to communicate with the control plane.</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<code>status</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.AWSManagedClusterStatus">
+AWSManagedClusterStatus
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.AWSManagedClusterSpec">AWSManagedClusterSpec
+</h3>
+<p>
+(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.AWSManagedCluster">AWSManagedCluster</a>)
+</p>
+<p>
+<p>AWSManagedClusterSpec defines the desired state of AWSManagedCluster</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>controlPlaneEndpoint</code><br/>
+<em>
+<a href="https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api@v1.0.0">
+Cluster API api/v1beta1.APIEndpoint
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>ControlPlaneEndpoint represents the endpoint used to communicate with the control plane.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.AWSManagedClusterStatus">AWSManagedClusterStatus
+</h3>
+<p>
+(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.AWSManagedCluster">AWSManagedCluster</a>)
+</p>
+<p>
+<p>AWSManagedClusterStatus defines the observed state of AWSManagedCluster</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>ready</code><br/>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Ready is when the AWSManagedControlPlane has a API server URL.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>failureDomains</code><br/>
+<em>
+<a href="https://doc.crds.dev/github.com/kubernetes-sigs/cluster-api@v1.0.0">
+Cluster API api/v1beta1.FailureDomains
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>FailureDomains specifies a list fo available availability zones that can be used</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="infrastructure.cluster.x-k8s.io/v1beta2.AWSResourceReference">AWSResourceReference
 </h3>
 <p>
@@ -18221,19 +18550,6 @@ string
 <td>
 <em>(Optional)</em>
 <p>ID of resource</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>arn</code><br/>
-<em>
-string
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>ARN of resource.
-Deprecated: This field has no function and is going to be removed in the next release.</p>
 </td>
 </tr>
 <tr>
@@ -18653,148 +18969,10 @@ The source for the rule will be set to control plane and worker security group I
 </tr>
 </tbody>
 </table>
-<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.ClassicELB">ClassicELB
-</h3>
-<p>
-(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.NetworkStatus">NetworkStatus</a>)
-</p>
-<p>
-<p>ClassicELB defines an AWS classic load balancer.</p>
-</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<code>name</code><br/>
-<em>
-string
-</em>
-</td>
-<td>
-<em>(Optional)</em>
-<p>The name of the load balancer. It must be unique within the set of load balancers
-defined in the region. It also serves as identifier.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>dnsName</code><br/>
-<em>
-string
-</em>
-</td>
-<td>
-<p>DNSName is the dns name of the load balancer.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>scheme</code><br/>
-<em>
-<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBScheme">
-ClassicELBScheme
-</a>
-</em>
-</td>
-<td>
-<p>Scheme is the load balancer scheme, either internet-facing or private.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>availabilityZones</code><br/>
-<em>
-[]string
-</em>
-</td>
-<td>
-<p>AvailabilityZones is an array of availability zones in the VPC attached to the load balancer.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>subnetIds</code><br/>
-<em>
-[]string
-</em>
-</td>
-<td>
-<p>SubnetIDs is an array of subnets in the VPC attached to the load balancer.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>securityGroupIds</code><br/>
-<em>
-[]string
-</em>
-</td>
-<td>
-<p>SecurityGroupIDs is an array of security groups assigned to the load balancer.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>listeners</code><br/>
-<em>
-<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBListener">
-[]ClassicELBListener
-</a>
-</em>
-</td>
-<td>
-<p>Listeners is an array of classic elb listeners associated with the load balancer. There must be at least one.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>healthChecks</code><br/>
-<em>
-<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBHealthCheck">
-ClassicELBHealthCheck
-</a>
-</em>
-</td>
-<td>
-<p>HealthCheck is the classic elb health check associated with the load balancer.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>attributes</code><br/>
-<em>
-<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBAttributes">
-ClassicELBAttributes
-</a>
-</em>
-</td>
-<td>
-<p>Attributes defines extra attributes associated with the load balancer.</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>tags</code><br/>
-<em>
-map[string]string
-</em>
-</td>
-<td>
-<p>Tags is a map of tags associated with the load balancer.</p>
-</td>
-</tr>
-</tbody>
-</table>
 <h3 id="infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBAttributes">ClassicELBAttributes
 </h3>
 <p>
-(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELB">ClassicELB</a>)
+(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.LoadBalancer">LoadBalancer</a>)
 </p>
 <p>
 <p>ClassicELBAttributes defines extra attributes associated with a classic load balancer.</p>
@@ -18838,7 +19016,7 @@ bool
 <h3 id="infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBHealthCheck">ClassicELBHealthCheck
 </h3>
 <p>
-(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELB">ClassicELB</a>)
+(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.LoadBalancer">LoadBalancer</a>)
 </p>
 <p>
 <p>ClassicELBHealthCheck defines an AWS classic load balancer health check.</p>
@@ -18910,7 +19088,7 @@ int64
 <h3 id="infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBListener">ClassicELBListener
 </h3>
 <p>
-(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELB">ClassicELB</a>)
+(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.LoadBalancer">LoadBalancer</a>)
 </p>
 <p>
 <p>ClassicELBListener defines an AWS classic load balancer listener.</p>
@@ -18927,8 +19105,8 @@ int64
 <td>
 <code>protocol</code><br/>
 <em>
-<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBProtocol">
-ClassicELBProtocol
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ELBProtocol">
+ELBProtocol
 </a>
 </em>
 </td>
@@ -18949,8 +19127,8 @@ int64
 <td>
 <code>instanceProtocol</code><br/>
 <em>
-<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBProtocol">
-ClassicELBProtocol
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ELBProtocol">
+ELBProtocol
 </a>
 </em>
 </td>
@@ -18969,22 +19147,6 @@ int64
 </tr>
 </tbody>
 </table>
-<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBProtocol">ClassicELBProtocol
-(<code>string</code> alias)</p></h3>
-<p>
-(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.AWSLoadBalancerSpec">AWSLoadBalancerSpec</a>, <a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBListener">ClassicELBListener</a>)
-</p>
-<p>
-<p>ClassicELBProtocol defines listener protocols for a classic load balancer.</p>
-</p>
-<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBScheme">ClassicELBScheme
-(<code>string</code> alias)</p></h3>
-<p>
-(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.AWSLoadBalancerSpec">AWSLoadBalancerSpec</a>, <a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELB">ClassicELB</a>)
-</p>
-<p>
-<p>ClassicELBScheme defines the scheme of a classic load balancer.</p>
-</p>
 <h3 id="infrastructure.cluster.x-k8s.io/v1beta2.CloudInit">CloudInit
 </h3>
 <p>
@@ -19068,6 +19230,22 @@ will use AWS Secrets Manager instead.</p>
 <p>
 <p>EKSAMILookupType specifies which AWS AMI to use for a AWSMachine and AWSMachinePool.</p>
 </p>
+<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.ELBProtocol">ELBProtocol
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.AWSLoadBalancerSpec">AWSLoadBalancerSpec</a>, <a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBListener">ClassicELBListener</a>, <a href="#infrastructure.cluster.x-k8s.io/v1beta2.Listener">Listener</a>, <a href="#infrastructure.cluster.x-k8s.io/v1beta2.TargetGroupSpec">TargetGroupSpec</a>)
+</p>
+<p>
+<p>ELBProtocol defines listener protocols for a load balancer.</p>
+</p>
+<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.ELBScheme">ELBScheme
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.AWSLoadBalancerSpec">AWSLoadBalancerSpec</a>, <a href="#infrastructure.cluster.x-k8s.io/v1beta2.LoadBalancer">LoadBalancer</a>)
+</p>
+<p>
+<p>ELBScheme defines the scheme of a load balancer.</p>
+</p>
 <h3 id="infrastructure.cluster.x-k8s.io/v1beta2.Filter">Filter
 </h3>
 <p>
@@ -19108,6 +19286,14 @@ string
 </tr>
 </tbody>
 </table>
+<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.HTTPTokensState">HTTPTokensState
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.InstanceMetadataOptions">InstanceMetadataOptions</a>)
+</p>
+<p>
+<p>HTTPTokensState describes the state of InstanceMetadataOptions.HTTPTokensState</p>
+</p>
 <h3 id="infrastructure.cluster.x-k8s.io/v1beta2.IPv6">IPv6
 </h3>
 <p>
@@ -19195,6 +19381,9 @@ string
 <h3 id="infrastructure.cluster.x-k8s.io/v1beta2.IngressRule">IngressRule
 </h3>
 <p>
+(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.AWSLoadBalancerSpec">AWSLoadBalancerSpec</a>)
+</p>
+<p>
 <p>IngressRule defines an AWS ingress rule for security groups.</p>
 </p>
 <table>
@@ -19213,6 +19402,7 @@ string
 </em>
 </td>
 <td>
+<p>Description provides extended information about the ingress rule.</p>
 </td>
 </tr>
 <tr>
@@ -19225,6 +19415,7 @@ SecurityGroupProtocol
 </em>
 </td>
 <td>
+<p>Protocol is the protocol for the ingress rule. Accepted values are &ldquo;-1&rdquo; (all), &ldquo;4&rdquo; (IP in IP),&ldquo;tcp&rdquo;, &ldquo;udp&rdquo;, &ldquo;icmp&rdquo;, and &ldquo;58&rdquo; (ICMPv6).</p>
 </td>
 </tr>
 <tr>
@@ -19235,6 +19426,7 @@ int64
 </em>
 </td>
 <td>
+<p>FromPort is the start of port range.</p>
 </td>
 </tr>
 <tr>
@@ -19245,6 +19437,7 @@ int64
 </em>
 </td>
 <td>
+<p>ToPort is the end of port range.</p>
 </td>
 </tr>
 <tr>
@@ -19281,6 +19474,21 @@ int64
 <td>
 <em>(Optional)</em>
 <p>The security group id to allow access from. Cannot be specified with CidrBlocks.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>sourceSecurityGroupRoles</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.SecurityGroupRole">
+[]SecurityGroupRole
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>The security group role to allow access from. Cannot be specified with CidrBlocks.
+The field will be combined with source security group IDs if specified.</p>
 </td>
 </tr>
 </tbody>
@@ -19543,6 +19751,18 @@ SpotMarketOptions
 </tr>
 <tr>
 <td>
+<code>placementGroupName</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>PlacementGroupName specifies the name of the placement group in which to launch the instance.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>tenancy</code><br/>
 <em>
 string
@@ -19565,8 +19785,116 @@ string
 <p>IDs of the instance&rsquo;s volumes</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>instanceMetadataOptions</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.InstanceMetadataOptions">
+InstanceMetadataOptions
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>InstanceMetadataOptions is the metadata options for the EC2 instance.</p>
+</td>
+</tr>
 </tbody>
 </table>
+<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.InstanceMetadataOptions">InstanceMetadataOptions
+</h3>
+<p>
+(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.AWSMachineSpec">AWSMachineSpec</a>, <a href="#infrastructure.cluster.x-k8s.io/v1beta2.Instance">Instance</a>, <a href="#infrastructure.cluster.x-k8s.io/v1beta2.AWSLaunchTemplate">AWSLaunchTemplate</a>)
+</p>
+<p>
+<p>InstanceMetadataOptions describes metadata options for the EC2 instance.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>httpEndpoint</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.InstanceMetadataState">
+InstanceMetadataState
+</a>
+</em>
+</td>
+<td>
+<p>Enables or disables the HTTP metadata endpoint on your instances.</p>
+<p>If you specify a value of disabled, you cannot access your instance metadata.</p>
+<p>Default: enabled</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>httpPutResponseHopLimit</code><br/>
+<em>
+int64
+</em>
+</td>
+<td>
+<p>The desired HTTP PUT response hop limit for instance metadata requests. The
+larger the number, the further instance metadata requests can travel.</p>
+<p>Default: 1</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>httpTokens</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.HTTPTokensState">
+HTTPTokensState
+</a>
+</em>
+</td>
+<td>
+<p>The state of token usage for your instance metadata requests.</p>
+<p>If the state is optional, you can choose to retrieve instance metadata with
+or without a session token on your request. If you retrieve the IAM role
+credentials without a token, the version 1.0 role credentials are returned.
+If you retrieve the IAM role credentials using a valid session token, the
+version 2.0 role credentials are returned.</p>
+<p>If the state is required, you must send a session token with any instance
+metadata retrieval requests. In this state, retrieving the IAM role credentials
+always returns the version 2.0 credentials; the version 1.0 credentials are
+not available.</p>
+<p>Default: optional</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>instanceMetadataTags</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.InstanceMetadataState">
+InstanceMetadataState
+</a>
+</em>
+</td>
+<td>
+<p>Set to enabled to allow access to instance tags from the instance metadata.
+Set to disabled to turn off access to instance tags from the instance metadata.
+For more information, see Work with instance tags using the instance metadata
+(<a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#work-with-tags-in-IMDS</a>).</p>
+<p>Default: disabled</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.InstanceMetadataState">InstanceMetadataState
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.InstanceMetadataOptions">InstanceMetadataOptions</a>)
+</p>
+<p>
+<p>InstanceMetadataState describes the state of InstanceMetadataOptions.HttpEndpoint and InstanceMetadataOptions.InstanceMetadataTags</p>
+</p>
 <h3 id="infrastructure.cluster.x-k8s.io/v1beta2.InstanceState">InstanceState
 (<code>string</code> alias)</p></h3>
 <p>
@@ -19574,6 +19902,257 @@ string
 </p>
 <p>
 <p>InstanceState describes the state of an AWS instance.</p>
+</p>
+<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.Listener">Listener
+</h3>
+<p>
+(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.LoadBalancer">LoadBalancer</a>)
+</p>
+<p>
+<p>Listener defines an AWS network load balancer listener.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>protocol</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ELBProtocol">
+ELBProtocol
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>port</code><br/>
+<em>
+int64
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>targetGroup</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.TargetGroupSpec">
+TargetGroupSpec
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.LoadBalancer">LoadBalancer
+</h3>
+<p>
+(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.NetworkStatus">NetworkStatus</a>)
+</p>
+<p>
+<p>LoadBalancer defines an AWS load balancer.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>arn</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>ARN of the load balancer. Unlike the ClassicLB, ARN is used mostly
+to define and get it.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>name</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>The name of the load balancer. It must be unique within the set of load balancers
+defined in the region. It also serves as identifier.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>dnsName</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>DNSName is the dns name of the load balancer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>scheme</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ELBScheme">
+ELBScheme
+</a>
+</em>
+</td>
+<td>
+<p>Scheme is the load balancer scheme, either internet-facing or private.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>availabilityZones</code><br/>
+<em>
+[]string
+</em>
+</td>
+<td>
+<p>AvailabilityZones is an array of availability zones in the VPC attached to the load balancer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>subnetIds</code><br/>
+<em>
+[]string
+</em>
+</td>
+<td>
+<p>SubnetIDs is an array of subnets in the VPC attached to the load balancer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>securityGroupIds</code><br/>
+<em>
+[]string
+</em>
+</td>
+<td>
+<p>SecurityGroupIDs is an array of security groups assigned to the load balancer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>listeners</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBListener">
+[]ClassicELBListener
+</a>
+</em>
+</td>
+<td>
+<p>ClassicELBListeners is an array of classic elb listeners associated with the load balancer. There must be at least one.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>healthChecks</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBHealthCheck">
+ClassicELBHealthCheck
+</a>
+</em>
+</td>
+<td>
+<p>HealthCheck is the classic elb health check associated with the load balancer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>attributes</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELBAttributes">
+ClassicELBAttributes
+</a>
+</em>
+</td>
+<td>
+<p>ClassicElbAttributes defines extra attributes associated with the load balancer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>tags</code><br/>
+<em>
+map[string]string
+</em>
+</td>
+<td>
+<p>Tags is a map of tags associated with the load balancer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>elbListeners</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.Listener">
+[]Listener
+</a>
+</em>
+</td>
+<td>
+<p>ELBListeners is an array of listeners associated with the load balancer. There must be at least one.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>elbAttributes</code><br/>
+<em>
+map[string]*string
+</em>
+</td>
+<td>
+<p>ELBAttributes defines extra attributes associated with v2 load balancers.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>loadBalancerType</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.LoadBalancerType">
+LoadBalancerType
+</a>
+</em>
+</td>
+<td>
+<p>LoadBalancerType sets the type for a load balancer. The default type is classic.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.LoadBalancerAttribute">LoadBalancerAttribute
+(<code>string</code> alias)</p></h3>
+<p>
+<p>LoadBalancerAttribute defines a set of attributes for a V2 load balancer.</p>
+</p>
+<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.LoadBalancerType">LoadBalancerType
+(<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.AWSLoadBalancerSpec">AWSLoadBalancerSpec</a>, <a href="#infrastructure.cluster.x-k8s.io/v1beta2.LoadBalancer">LoadBalancer</a>)
+</p>
+<p>
 </p>
 <h3 id="infrastructure.cluster.x-k8s.io/v1beta2.NetworkSpec">NetworkSpec
 </h3>
@@ -19681,13 +20260,13 @@ map[sigs.k8s.io/cluster-api-provider-aws/v2/api/v1beta2.SecurityGroupRole]sigs.k
 <td>
 <code>apiServerElb</code><br/>
 <em>
-<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ClassicELB">
-ClassicELB
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.LoadBalancer">
+LoadBalancer
 </a>
 </em>
 </td>
 <td>
-<p>APIServerELB is the Kubernetes api server classic load balancer.</p>
+<p>APIServerELB is the Kubernetes api server load balancer.</p>
 </td>
 </tr>
 </tbody>
@@ -19862,6 +20441,9 @@ Tags
 </p>
 <h3 id="infrastructure.cluster.x-k8s.io/v1beta2.SecurityGroupRole">SecurityGroupRole
 (<code>string</code> alias)</p></h3>
+<p>
+(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.IngressRule">IngressRule</a>)
+</p>
 <p>
 <p>SecurityGroupRole defines the unique role of a security group.</p>
 </p>
@@ -20038,6 +20620,165 @@ Tags
 <p>
 <p>Tags defines a map of tags.</p>
 </p>
+<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.TargetGroupAttribute">TargetGroupAttribute
+(<code>string</code> alias)</p></h3>
+<p>
+<p>TargetGroupAttribute defines attribute key values for V2 Load Balancer Attributes.</p>
+</p>
+<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.TargetGroupHealthCheck">TargetGroupHealthCheck
+</h3>
+<p>
+(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.TargetGroupSpec">TargetGroupSpec</a>)
+</p>
+<p>
+<p>TargetGroupHealthCheck defines health check settings for the target group.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>protocol</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>path</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>port</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>intervalSeconds</code><br/>
+<em>
+int64
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>timeoutSeconds</code><br/>
+<em>
+int64
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>thresholdCount</code><br/>
+<em>
+int64
+</em>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="infrastructure.cluster.x-k8s.io/v1beta2.TargetGroupSpec">TargetGroupSpec
+</h3>
+<p>
+(<em>Appears on:</em><a href="#infrastructure.cluster.x-k8s.io/v1beta2.Listener">Listener</a>)
+</p>
+<p>
+<p>TargetGroupSpec specifies target group settings for a given listener.
+This is created first, and the ARN is then passed to the listener.</p>
+</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>name</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+<p>Name of the TargetGroup. Must be unique over the same group of listeners.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>port</code><br/>
+<em>
+int64
+</em>
+</td>
+<td>
+<p>Port is the exposed port</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>protocol</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.ELBProtocol">
+ELBProtocol
+</a>
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>vpcId</code><br/>
+<em>
+string
+</em>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<code>targetGroupHealthCheck</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.TargetGroupHealthCheck">
+TargetGroupHealthCheck
+</a>
+</em>
+</td>
+<td>
+<p>HealthCheck is the elb health check associated with the load balancer.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3 id="infrastructure.cluster.x-k8s.io/v1beta2.VPCSpec">VPCSpec
 </h3>
 <p>
@@ -20587,6 +21328,20 @@ SpotMarketOptions
 </td>
 <td>
 <p>SpotMarketOptions are options for configuring AWSMachinePool instances to be run using AWS Spot instances.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>metadataOptions</code><br/>
+<em>
+<a href="#infrastructure.cluster.x-k8s.io/v1beta2.InstanceMetadataOptions">
+InstanceMetadataOptions
+</a>
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>InstanceMetadataOptions defines the behavior for applying metadata to instances.</p>
 </td>
 </tr>
 </tbody>
