@@ -385,7 +385,6 @@ func autoConvert_v1beta1_AWSLaunchTemplate_To_v1beta2_AWSLaunchTemplate(in *AWSL
 	out.VersionNumber = (*int64)(unsafe.Pointer(in.VersionNumber))
 	out.AdditionalSecurityGroups = *(*[]apiv1beta2.AWSResourceReference)(unsafe.Pointer(&in.AdditionalSecurityGroups))
 	out.SpotMarketOptions = (*apiv1beta2.SpotMarketOptions)(unsafe.Pointer(in.SpotMarketOptions))
-	out.InstanceMetadataOptions = (*apiv1beta2.InstanceMetadataOptions)(unsafe.Pointer(in.InstanceMetadataOptions))
 	return nil
 }
 
@@ -407,7 +406,7 @@ func autoConvert_v1beta2_AWSLaunchTemplate_To_v1beta1_AWSLaunchTemplate(in *v1be
 	out.VersionNumber = (*int64)(unsafe.Pointer(in.VersionNumber))
 	out.AdditionalSecurityGroups = *(*[]apiv1beta2.AWSResourceReference)(unsafe.Pointer(&in.AdditionalSecurityGroups))
 	out.SpotMarketOptions = (*apiv1beta2.SpotMarketOptions)(unsafe.Pointer(in.SpotMarketOptions))
-	out.InstanceMetadataOptions = (*apiv1beta2.InstanceMetadataOptions)(unsafe.Pointer(in.InstanceMetadataOptions))
+	// WARNING: in.InstanceMetadataOptions requires manual conversion: does not exist in peer-type
 	return nil
 }
 

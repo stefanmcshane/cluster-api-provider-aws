@@ -122,10 +122,6 @@ type AWSLaunchTemplate struct {
 
 	// SpotMarketOptions are options for configuring AWSMachinePool instances to be run using AWS Spot instances.
 	SpotMarketOptions *infrav1.SpotMarketOptions `json:"spotMarketOptions,omitempty"`
-
-	// InstanceMetadataOptions defines the behavior for applying metadata to instances.
-	// +optional
-	InstanceMetadataOptions *infrav1.InstanceMetadataOptions `json:"metadataOptions,omitempty"`
 }
 
 // Overrides are used to override the instance type specified by the launch template with multiple
