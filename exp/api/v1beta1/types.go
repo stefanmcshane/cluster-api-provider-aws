@@ -133,11 +133,9 @@ type Overrides struct {
 // OnDemandAllocationStrategy indicates how to allocate instance types to fulfill On-Demand capacity.
 type OnDemandAllocationStrategy string
 
-var (
-	// OnDemandAllocationStrategyPrioritized uses the order of instance type overrides
-	// for the LaunchTemplate to define the launch priority of each instance type.
-	OnDemandAllocationStrategyPrioritized = OnDemandAllocationStrategy("prioritized")
-)
+// OnDemandAllocationStrategyPrioritized uses the order of instance type overrides
+// for the LaunchTemplate to define the launch priority of each instance type.
+var OnDemandAllocationStrategyPrioritized = OnDemandAllocationStrategy("prioritized")
 
 // SpotAllocationStrategy indicates how to allocate instances across Spot Instance pools.
 type SpotAllocationStrategy string
@@ -201,10 +199,8 @@ type AutoScalingGroup struct {
 // ASGStatus is a status string returned by the autoscaling API.
 type ASGStatus string
 
-var (
-	// ASGStatusDeleteInProgress is the string representing an ASG that is currently deleting.
-	ASGStatusDeleteInProgress = ASGStatus("Delete in progress")
-)
+// ASGStatusDeleteInProgress is the string representing an ASG that is currently deleting.
+var ASGStatusDeleteInProgress = ASGStatus("Delete in progress")
 
 // TaintEffect is the effect for a Kubernetes taint.
 type TaintEffect string
