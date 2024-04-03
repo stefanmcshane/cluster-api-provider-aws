@@ -1,0 +1,96 @@
+# EKS Pod Identity Associations
+
+[EKS Pod Identity Associations](<[https://aws.amazon.com/blogs/containers/introducing-amazon-eks-add-ons/](addons.md)>) can be used with EKS clusters created using Cluster API Provider AWS.
+
+## Prerequisites
+
+### Setting up the IAM role in AWS
+
+Outside of CAPI/CAPA, you must first create an IAM Role which has the `pods.eks.amazonaws.com` service principal. EKS Identities trust relationships must also include the `sts:TagSession` permission (on top of the `sts:AssumeRole` permission).
+
+This is a sample trust policy which allows a kubernetes service account to assume this role (`capi-test-role`).
+
+```yaml
+{
+  "Version": "2012-10-17",
+  "Statement":
+    [
+      {
+        "Effect": "Allow",
+        "Principal": { "Service": "pods.eks.amazonaws.com" },
+        "Action": ["sts:AssumeRole", "sts:TagSession"],
+      },
+    ],
+}
+```
+
+### Installing the EKS Pod Identity Agent
+
+The EKS Pod Identity Agent can be installed as a Managed Add-on through the AWS Console, or through CAPA.
+To add the addon through CAPA, add the following addon to your `AWSManagedControlPlane` spec under `.spec.addons`. Please ensure that the version is up to date, according to the [addons section](addons.md)
+
+```yaml
+- conflictResolution: overwrite
+  name: eks-pod-identity-agent
+  version: v1.1.0-eksbuild.1
+```
+
+The following is not fully specified, but is intended as an example of where to add the addon, in your `AWSManagedControlPlane` CRD.
+
+```yaml
+kind: AWSManagedControlPlane
+apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+metadata:
+  name: "capi-managed-test"
+spec:
+  region: "eu-west-2"
+  sshKeyName: "capi-management"
+  version: "v1.27.0"
+  addons:
+    - conflictResolution: overwrite
+      name: eks-pod-identity-agent
+      version: v1.1.0-eksbuild.1
+```
+
+You can verify that this is running on your kubernetes cluster with `kubectl get deploy -A | grep eks`
+
+## Mapping a service account to an IAM role
+
+Now that you have created a role `capi-test-role` in AWS, and have added the EKS agent to your cluster, we must add the following to our `AWSManagedControlPlane` under `.spec.podIdentityAssociations`
+
+```yaml
+podIdentityAssociations:
+  - serviceAccountNamespace: default
+    serviceAccountName: myserviceaccount
+    serviceAccountRoleARN: arn:aws:iam::MY_AWS_ACCOUNT_ID:role/capi-test-role
+```
+
+- `serviceAccountNamespace` is the namespace which the kubernetes service account exists.
+- `serviceAccountName` is the name of the kubernetes service account. You can check this out with `kubectl get serviceaccount -n SERVICE_NAMESPACE` where `SERVICE_NAMESPACE` is the namespace from above
+- `serviceAccountRoleARN` is the AWS ARN for the role you created in step 1 (`capi-test-role`). Be sure to copy this exactly from your AWS console (`IAM > Roles`) if you are unsure
+
+To use the same role across multiple service accounts, or namespaces, you must create multiple associations.
+
+A full CAPA example of everything mentioned above, including 2 role mappings is shown below:
+
+```yaml
+kind: AWSManagedControlPlane
+apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+metadata:
+  name: "capi-managed-test"
+spec:
+  region: "eu-west-2"
+  sshKeyName: "capi-management"
+  version: "v1.27.0"
+  addons:
+    - conflictResolution: overwrite
+      name: eks-pod-identity-agent
+      version: v1.1.0-eksbuild.1
+  podIdentityAssociations:
+    - serviceAccountNamespace: default
+      serviceAccountName: myserviceaccount
+      serviceAccountRoleARN: arn:aws:iam::MY_AWS_ACCOUNT_ID:role/capi-test-role
+    - serviceAccountNamespace: another-namespace
+      serviceAccountName: another-service-account
+      serviceAccountRoleARN: arn:aws:iam::MY_AWS_ACCOUNT_ID:role/capi-test-role
+```
