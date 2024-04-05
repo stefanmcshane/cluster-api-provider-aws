@@ -21,8 +21,9 @@ import (
 	"fmt"
 
 	"github.com/aws/aws-sdk-go/service/eks"
+
 	ekscontrolplanev1 "sigs.k8s.io/cluster-api-provider-aws/v2/controlplane/eks/api/v1beta2"
-	ekspodidentities "sigs.k8s.io/cluster-api-provider-aws/v2/pkg/eks/pod_identities"
+	ekspodidentities "sigs.k8s.io/cluster-api-provider-aws/v2/pkg/eks/podidentities"
 	"sigs.k8s.io/cluster-api-provider-aws/v2/pkg/record"
 )
 
@@ -36,7 +37,7 @@ func (s *Service) reconcilePodIdentities(ctx context.Context) error {
 	currentAssociations, err := s.listEksPodIdentities(eksClusterName)
 	if err != nil {
 		s.Error(err, "failed listing eks pod identity assocations")
-		return fmt.Errorf("listing eks eks pod identity assocations: %w", err)
+		return fmt.Errorf("listing eks pod identity assocations: %w", err)
 	}
 
 	if len(currentAssociations) == 0 && (s.scope.ControlPlane.Spec.PodIdentityAssociations == nil || len(s.scope.ControlPlane.Spec.PodIdentityAssociations) == 0) {
@@ -90,10 +91,11 @@ func (s *Service) translateAPIToPodAssociation(assocs []ekscontrolplanev1.PodIde
 	converted := []ekspodidentities.EKSPodIdentityAssociation{}
 
 	for _, assoc := range assocs {
+		a := assoc
 		c := ekspodidentities.EKSPodIdentityAssociation{
-			ServiceAccountName:      &assoc.ServiceAccountName,
-			ServiceAccountNamespace: &assoc.ServiceAccountNamespace,
-			RoleARN:                 &assoc.RoleARN,
+			ServiceAccountName:      &a.ServiceAccountName,
+			ServiceAccountNamespace: &a.ServiceAccountNamespace,
+			RoleARN:                 &a.RoleARN,
 		}
 
 		converted = append(converted, c)
@@ -106,12 +108,11 @@ func (s *Service) translateAWSToPodAssociation(assocs []*eks.PodIdentityAssociat
 	converted := []ekspodidentities.EKSPodIdentityAssociation{}
 
 	for _, assoc := range assocs {
-
 		c := ekspodidentities.EKSPodIdentityAssociation{
 			ServiceAccountName:      assoc.ServiceAccount,
 			ServiceAccountNamespace: assoc.Namespace,
 			RoleARN:                 assoc.AssociationArn,
-			AssociationId:           assoc.AssociationId,
+			AssociationID:           assoc.AssociationId,
 		}
 
 		converted = append(converted, c)

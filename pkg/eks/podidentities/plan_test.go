@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package pod_identities
+package podidentities
 
 import (
 	"context"
@@ -34,7 +34,7 @@ func TestEKSPodIdentityAssociationsPlan(t *testing.T) {
 	namespace := "my-namespace"
 	roleArn := "aws://rolearn"
 	responseAssociationArn := "aws://association-arn"
-	associationId := "aws://association-id"
+	associationID := "aws://association-id"
 	serviceAccount := "my-service-account"
 	created := time.Now()
 
@@ -67,7 +67,7 @@ func TestEKSPodIdentityAssociationsPlan(t *testing.T) {
 					Return(&eks.CreatePodIdentityAssociationOutput{
 						Association: &eks.PodIdentityAssociation{
 							AssociationArn: aws.String(responseAssociationArn),
-							AssociationId:  aws.String(associationId),
+							AssociationId:  aws.String(associationID),
 							Namespace:      aws.String(namespace),
 							RoleArn:        aws.String(roleArn),
 							ServiceAccount: aws.String(serviceAccount),
@@ -113,13 +113,13 @@ func TestEKSPodIdentityAssociationsPlan(t *testing.T) {
 			expect: func(m *mock_eksiface.MockEKSAPIMockRecorder) {
 				m.
 					DeletePodIdentityAssociation(gomock.Eq(&eks.DeletePodIdentityAssociationInput{
-						AssociationId: aws.String(associationId),
+						AssociationId: aws.String(associationID),
 						ClusterName:   aws.String(clusterName),
 					})).
 					Return(&eks.DeletePodIdentityAssociationOutput{
 						Association: &eks.PodIdentityAssociation{
 							AssociationArn: aws.String(responseAssociationArn),
-							AssociationId:  aws.String(associationId),
+							AssociationId:  aws.String(associationID),
 							Namespace:      aws.String(namespace),
 							RoleArn:        aws.String(roleArn),
 							ServiceAccount: aws.String(serviceAccount),
@@ -135,7 +135,7 @@ func TestEKSPodIdentityAssociationsPlan(t *testing.T) {
 					ServiceAccountName:      aws.String(serviceAccount),
 					ServiceAccountNamespace: aws.String(namespace),
 					RoleARN:                 aws.String(roleArn),
-					AssociationId:           aws.String(associationId),
+					AssociationID:           aws.String(associationID),
 				},
 			},
 			expectCreateError: false,

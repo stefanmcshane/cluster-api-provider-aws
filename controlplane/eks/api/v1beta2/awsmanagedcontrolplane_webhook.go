@@ -422,9 +422,8 @@ func (r *AWSManagedControlPlane) validServiceAccountName() field.ErrorList {
 			// https://github.com/kubernetes/apimachinery/blob/d794766488ac2892197a7cc8d0b4b46b0edbda80/pkg/api/validation/generic.go#L68
 
 			if validationErrs := validation.IsDNS1123Subdomain(association.ServiceAccountName); len(validationErrs) > 0 {
-				allErrs = append(allErrs, field.Invalid(associationPath.Child("serviceAccountName"), association.ServiceAccountName, fmt.Sprintf("serviceAccountName is invalid: %w", validationErrs)))
+				allErrs = append(allErrs, field.Invalid(associationPath.Child("serviceAccountName"), association.ServiceAccountName, fmt.Sprintf("serviceAccountName is invalid: %v", validationErrs)))
 			}
-
 		}
 	}
 

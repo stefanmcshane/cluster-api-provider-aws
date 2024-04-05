@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package pod_identities
+package podidentities
 
 import (
 	"context"
@@ -39,18 +39,18 @@ var (
 type DeletePodIdentityAssociationProcedure struct {
 	eksClient             eksiface.EKSAPI
 	clusterName           string
-	existingAssociationId string
+	existingAssociationID string
 }
 
 // Do implements the logic for the procedure.
 func (p *DeletePodIdentityAssociationProcedure) Do(_ context.Context) error {
 	input := &eks.DeletePodIdentityAssociationInput{
-		AssociationId: aws.String(p.existingAssociationId),
+		AssociationId: aws.String(p.existingAssociationID),
 		ClusterName:   aws.String(p.clusterName),
 	}
 
 	if _, err := p.eksClient.DeletePodIdentityAssociation(input); err != nil {
-		return fmt.Errorf("deleting eks eks pod identity %s: %w", p.existingAssociationId, err)
+		return fmt.Errorf("deleting eks pod identity %s: %w", p.existingAssociationID, err)
 	}
 
 	return nil

@@ -351,7 +351,6 @@ func autoConvert_v1beta1_AWSManagedControlPlaneSpec_To_v1beta2_AWSManagedControl
 	out.Bastion = in.Bastion
 	out.TokenMethod = (*v1beta2.EKSTokenMethod)(unsafe.Pointer(in.TokenMethod))
 	out.AssociateOIDCProvider = in.AssociateOIDCProvider
-	out.PodIdentityAssociations = []v1beta2.PodIdentityAssociation{}
 	out.Addons = (*[]v1beta2.Addon)(unsafe.Pointer(in.Addons))
 	out.OIDCIdentityProviderConfig = (*v1beta2.OIDCIdentityProviderConfig)(unsafe.Pointer(in.OIDCIdentityProviderConfig))
 	// WARNING: in.DisableVPCCNI requires manual conversion: does not exist in peer-type

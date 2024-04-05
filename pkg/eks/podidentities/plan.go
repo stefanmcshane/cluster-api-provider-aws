@@ -14,8 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// Package pod_identities provides a plan to manage EKS pod_identities associations.
-package pod_identities
+// Package podidentities provides a plan to manage EKS podidentities associations.
+package podidentities
 
 import (
 	"context"
@@ -65,7 +65,8 @@ func (a *plan) getDesiredAssociation(association EKSPodIdentityAssociation) bool
 func (a *plan) Create(_ context.Context) ([]planner.Procedure, error) {
 	procedures := []planner.Procedure{}
 
-	for _, desired := range a.desiredAssociations {
+	for _, d := range a.desiredAssociations {
+		desired := d
 		existsInCurrent := a.getCurrentAssociation(desired)
 		existsInDesired := a.getDesiredAssociation(desired)
 
@@ -91,7 +92,7 @@ func (a *plan) Create(_ context.Context) ([]planner.Procedure, error) {
 				&DeletePodIdentityAssociationProcedure{
 					eksClient:             a.eksClient,
 					clusterName:           a.clusterName,
-					existingAssociationId: *current.AssociationId,
+					existingAssociationID: *current.AssociationID,
 				},
 			)
 		}

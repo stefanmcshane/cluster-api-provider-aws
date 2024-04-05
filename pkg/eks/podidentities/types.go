@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package pod_identities
+package podidentities
 
 import (
 	"github.com/google/go-cmp/cmp"
@@ -25,7 +25,7 @@ type EKSPodIdentityAssociation struct {
 	ServiceAccountName      *string
 	ServiceAccountNamespace *string
 	RoleARN                 *string
-	AssociationId           *string
+	AssociationID           *string
 }
 
 // IsEqual determines if 2 EKSPodIdentityAssociation are equal.
