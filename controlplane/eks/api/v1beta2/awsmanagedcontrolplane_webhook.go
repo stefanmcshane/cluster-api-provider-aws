@@ -428,11 +428,6 @@ func (r *AWSManagedControlPlane) validServiceAccountName() field.ErrorList {
 		}
 	}
 
-	// if r.Spec..VPC.IsIPv6Enabled() && r.Spec.NetworkSpec.VPC.PrivateDNSHostnameTypeOnLaunch != nil && *r.Spec.NetworkSpec.VPC.PrivateDNSHostnameTypeOnLaunch != hostnameTypeResourceName {
-	// 	privateDNSHostnameTypeOnLaunch := field.NewPath("spec", "networkSpec", "vpc", "privateDNSHostnameTypeOnLaunch")
-	// 	allErrs = append(allErrs, field.Invalid(privateDNSHostnameTypeOnLaunch, r.Spec.NetworkSpec.VPC.PrivateDNSHostnameTypeOnLaunch, fmt.Sprintf("only %s HostnameType can be used in IPv6 mode", hostnameTypeResourceName)))
-	// }
-
 	return allErrs
 }
 
