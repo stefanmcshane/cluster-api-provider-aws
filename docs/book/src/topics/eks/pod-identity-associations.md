@@ -56,15 +56,15 @@ spec:
     - serviceAccount:
         namespace: default
         name: myserviceaccount
-        roleARN: arn:aws:iam::MY_AWS_ACCOUNT_ID:role/capi-test-role
+        roleARN: arn:aws:iam::012345678901:role/capi-test-role
 ```
 
 - `serviceAccount.namespace` and `serviceAccount.name` refer to the [`ServiceAccount`](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/) object in the Kubernetes cluster
 - `serviceAccount.roleARN` is the AWS ARN for the IAM role you created in step 1 (named `capi-test-role` in this tutorial). Make sure to copy this exactly from your AWS console (`IAM > Roles`).
 
-To use the same role across multiple service accounts, or namespaces, you must create multiple associations.
+To use the same IAM role across multiple service accounts/namespaces, you must create multiple associations.
 
-A full CAPA example of everything mentioned above, including 2 role mappings is shown below:
+A full CAPA example of everything mentioned above, including 2 role mappings, is shown below:
 
 ```yaml
 kind: AWSManagedControlPlane
@@ -82,8 +82,8 @@ spec:
   podIdentityAssociations:
     - serviceAccountNamespace: default
       serviceAccountName: myserviceaccount
-      serviceAccountRoleARN: arn:aws:iam::MY_AWS_ACCOUNT_ID:role/capi-test-role
+      serviceAccountRoleARN: arn:aws:iam::012345678901:role/capi-test-role
     - serviceAccountNamespace: another-namespace
       serviceAccountName: another-service-account
-      serviceAccountRoleARN: arn:aws:iam::MY_AWS_ACCOUNT_ID:role/capi-test-role
+      serviceAccountRoleARN: arn:aws:iam::012345678901:role/capi-test-role
 ```
