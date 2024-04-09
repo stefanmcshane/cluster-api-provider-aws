@@ -48,10 +48,15 @@ You can verify that this is running on your kubernetes cluster with `kubectl get
 Now that you have created a role `capi-test-role` in AWS, and have added the EKS agent to your cluster, we must add the following to our `AWSManagedControlPlane` under `.spec.podIdentityAssociations`
 
 ```yaml
-podIdentityAssociations:
-  - serviceAccountNamespace: default
-    serviceAccountName: myserviceaccount
-    serviceAccountRoleARN: arn:aws:iam::MY_AWS_ACCOUNT_ID:role/capi-test-role
+# [...]
+kind: AWSManagedControlPlane
+spec:
+  # [...]
+  podIdentityAssociations:
+    - serviceAccount:
+        namespace: default
+        name: myserviceaccount
+        roleARN: arn:aws:iam::MY_AWS_ACCOUNT_ID:role/capi-test-role
 ```
 
 - `serviceAccountNamespace` is the namespace which the kubernetes service account exists.
