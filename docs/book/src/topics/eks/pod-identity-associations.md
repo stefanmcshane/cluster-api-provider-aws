@@ -1,6 +1,6 @@
 # EKS Pod Identity Associations
 
-[EKS Pod Identity Associations](<[https://aws.amazon.com/blogs/containers/introducing-amazon-eks-add-ons/](addons.md)>) can be used with EKS clusters created using Cluster API Provider AWS.
+[EKS Pod Identity Associations](https://aws.amazon.com/blogs/containers/introducing-amazon-eks-add-ons/) can be used with EKS clusters created using Cluster API Provider AWS.
 
 ## Prerequisites
 
