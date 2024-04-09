@@ -22,10 +22,10 @@ import (
 
 // EKSPodIdentityAssociation represents an EKS pod identity association.
 type EKSPodIdentityAssociation struct {
-	ServiceAccountName      *string
-	ServiceAccountNamespace *string
-	RoleARN                 *string
-	AssociationID           *string
+	ServiceAccountName      string
+	ServiceAccountNamespace string
+	RoleARN                 string
+	AssociationID           string
 }
 
 // IsEqual determines if 2 EKSPodIdentityAssociation are equal.

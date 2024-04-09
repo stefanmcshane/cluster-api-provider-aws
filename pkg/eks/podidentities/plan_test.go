@@ -79,9 +79,9 @@ func TestEKSPodIdentityAssociationsPlan(t *testing.T) {
 			},
 			desired: []EKSPodIdentityAssociation{
 				{
-					ServiceAccountName:      aws.String(serviceAccount),
-					ServiceAccountNamespace: aws.String(namespace),
-					RoleARN:                 aws.String(roleArn),
+					ServiceAccountName:      serviceAccount,
+					ServiceAccountNamespace: namespace,
+					RoleARN:                 roleArn,
 				},
 			},
 			current:           []EKSPodIdentityAssociation{},
@@ -93,16 +93,16 @@ func TestEKSPodIdentityAssociationsPlan(t *testing.T) {
 			expect: func(m *mock_eksiface.MockEKSAPIMockRecorder) {},
 			desired: []EKSPodIdentityAssociation{
 				{
-					ServiceAccountName:      aws.String(serviceAccount),
-					ServiceAccountNamespace: aws.String(namespace),
-					RoleARN:                 aws.String(roleArn),
+					ServiceAccountName:      serviceAccount,
+					ServiceAccountNamespace: namespace,
+					RoleARN:                 roleArn,
 				},
 			},
 			current: []EKSPodIdentityAssociation{
 				{
-					ServiceAccountName:      aws.String(serviceAccount),
-					ServiceAccountNamespace: aws.String(namespace),
-					RoleARN:                 aws.String(roleArn),
+					ServiceAccountName:      serviceAccount,
+					ServiceAccountNamespace: namespace,
+					RoleARN:                 roleArn,
 				},
 			},
 			expectCreateError: false,
@@ -132,10 +132,10 @@ func TestEKSPodIdentityAssociationsPlan(t *testing.T) {
 			desired: []EKSPodIdentityAssociation{},
 			current: []EKSPodIdentityAssociation{
 				{
-					ServiceAccountName:      aws.String(serviceAccount),
-					ServiceAccountNamespace: aws.String(namespace),
-					RoleARN:                 aws.String(roleArn),
-					AssociationID:           aws.String(associationID),
+					ServiceAccountName:      serviceAccount,
+					ServiceAccountNamespace: namespace,
+					RoleARN:                 roleArn,
+					AssociationID:           associationID,
 				},
 			},
 			expectCreateError: false,

@@ -45,7 +45,7 @@ type plan struct {
 
 func (a *plan) getCurrentAssociation(association EKSPodIdentityAssociation) bool {
 	for _, current := range a.currentAssociations {
-		if *current.ServiceAccountName == *association.ServiceAccountName && *current.ServiceAccountNamespace == *association.ServiceAccountNamespace {
+		if current.ServiceAccountName == association.ServiceAccountName && current.ServiceAccountNamespace == association.ServiceAccountNamespace {
 			return true
 		}
 	}
@@ -54,7 +54,7 @@ func (a *plan) getCurrentAssociation(association EKSPodIdentityAssociation) bool
 
 func (a *plan) getDesiredAssociation(association EKSPodIdentityAssociation) bool {
 	for _, desired := range a.desiredAssociations {
-		if *desired.ServiceAccountName == *association.ServiceAccountName && *desired.ServiceAccountNamespace == *association.ServiceAccountNamespace {
+		if desired.ServiceAccountName == association.ServiceAccountName && desired.ServiceAccountNamespace == association.ServiceAccountNamespace {
 			return true
 		}
 	}
@@ -92,7 +92,7 @@ func (a *plan) Create(_ context.Context) ([]planner.Procedure, error) {
 				&DeletePodIdentityAssociationProcedure{
 					eksClient:             a.eksClient,
 					clusterName:           a.clusterName,
-					existingAssociationID: *current.AssociationID,
+					existingAssociationID: current.AssociationID,
 				},
 			)
 		}

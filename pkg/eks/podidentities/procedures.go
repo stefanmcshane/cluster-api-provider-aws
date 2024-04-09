@@ -26,14 +26,8 @@ import (
 	"github.com/aws/aws-sdk-go/service/eks/eksiface"
 )
 
-var (
-	// ErrNilPodIdentityAssociation defines an error for when a nil eks pod identity is returned.
-	ErrNilPodIdentityAssociation = errors.New("nil eks pod identity association returned from create")
-	// ErrPodIdentityAssociationNotFound defines an error for when an eks pod identity is not found.
-	ErrPodIdentityAssociationNotFound = errors.New("eks pod identity association not found")
-	// ErrPodIdentityAssociationAlreadyExists defines an error for when an eks pod identity already exists.
-	ErrPodIdentityAssociationAlreadyExists = errors.New("eks pod identity association already exists")
-)
+// errPodIdentityAssociationNotFound defines an error for when an eks pod identity is not found.
+var errPodIdentityAssociationNotFound = errors.New("eks pod identity association not found")
 
 // DeletePodIdentityAssociationProcedure is a procedure that will delete an EKS eks pod identity.
 type DeletePodIdentityAssociationProcedure struct {
@@ -71,26 +65,19 @@ type CreatePodIdentityAssociationProcedure struct {
 // Do implements the logic for the procedure.
 func (p *CreatePodIdentityAssociationProcedure) Do(_ context.Context) error {
 	if p.newAssociation == nil {
-		return fmt.Errorf("getting desired eks pod identity for cluster %s: %w", p.clusterName, ErrPodIdentityAssociationNotFound)
+		return fmt.Errorf("getting desired eks pod identity for cluster %s: %w", p.clusterName, errPodIdentityAssociationNotFound)
 	}
 
 	input := &eks.CreatePodIdentityAssociationInput{
 		ClusterName:    aws.String(p.clusterName),
-		Namespace:      p.newAssociation.ServiceAccountNamespace,
-		RoleArn:        p.newAssociation.RoleARN,
-		ServiceAccount: p.newAssociation.ServiceAccountName,
+		Namespace:      &p.newAssociation.ServiceAccountNamespace,
+		RoleArn:        &p.newAssociation.RoleARN,
+		ServiceAccount: &p.newAssociation.ServiceAccountName,
 	}
 
-	output, err := p.eksClient.CreatePodIdentityAssociation(input)
+	_, err := p.eksClient.CreatePodIdentityAssociation(input)
 	if err != nil {
 		return fmt.Errorf("creating desired eks pod identity for cluster %s: %w", p.clusterName, err)
-	}
-
-	if output == nil {
-		return ErrNilPodIdentityAssociation
-	}
-	if output.Association == nil {
-		return ErrNilPodIdentityAssociation
 	}
 
 	return nil

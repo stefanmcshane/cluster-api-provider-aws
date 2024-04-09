@@ -33,14 +33,13 @@ func (s *Service) reconcilePodIdentities(ctx context.Context) error {
 	eksClusterName := s.scope.KubernetesClusterName()
 
 	// Get existing eks pod identities on the cluster
-	s.scope.Debug("getting existing eks pod identities", "cluster", eksClusterName)
 	currentAssociations, err := s.listEksPodIdentities(eksClusterName)
 	if err != nil {
 		s.Error(err, "failed listing eks pod identity assocations")
 		return fmt.Errorf("listing eks pod identity assocations: %w", err)
 	}
 
-	if len(currentAssociations) == 0 && (s.scope.ControlPlane.Spec.PodIdentityAssociations == nil || len(s.scope.ControlPlane.Spec.PodIdentityAssociations) == 0) {
+	if len(currentAssociations) == 0 && len(s.scope.ControlPlane.Spec.PodIdentityAssociations) == 0 {
 		s.scope.Debug("no eks pod identities found, no action needed")
 		return nil
 	}
@@ -60,12 +59,12 @@ func (s *Service) reconcilePodIdentities(ctx context.Context) error {
 		s.scope.Debug("Executing pod association procedure", "name", procedure.Name())
 		if err := procedure.Do(ctx); err != nil {
 			s.scope.Error(err, "failed executing pod association procedure", "name", procedure.Name())
-			return fmt.Errorf("%s: %w", procedure.Name(), err)
+			return fmt.Errorf("executing pod association procedure %s: %w", procedure.Name(), err)
 		}
 	}
 
 	record.Eventf(s.scope.ControlPlane, "SuccessfulReconcileEKSClusterPodIdentityAssociations", "Reconciled Pod Identity associations for EKS Cluster %s", s.scope.KubernetesClusterName())
-	s.scope.Debug("Reconcile EKS pod identity associationss completed successfully")
+	s.scope.Info("Reconcile EKS pod identity associations completed successfully")
 
 	return nil
 }
@@ -81,9 +80,7 @@ func (s *Service) listEksPodIdentities(eksClusterName string) ([]*eks.PodIdentit
 	if err != nil {
 		return nil, fmt.Errorf("listing eks pod identity assocations: %w", err)
 	}
-	if output == nil {
-		return nil, nil
-	}
+
 	return output.Associations, nil
 }
 
@@ -93,9 +90,9 @@ func (s *Service) translateAPIToPodAssociation(assocs []ekscontrolplanev1.PodIde
 	for _, assoc := range assocs {
 		a := assoc
 		c := ekspodidentities.EKSPodIdentityAssociation{
-			ServiceAccountName:      &a.ServiceAccountName,
-			ServiceAccountNamespace: &a.ServiceAccountNamespace,
-			RoleARN:                 &a.RoleARN,
+			ServiceAccountName:      a.ServiceAccountName,
+			ServiceAccountNamespace: a.ServiceAccountNamespace,
+			RoleARN:                 a.RoleARN,
 		}
 
 		converted = append(converted, c)
@@ -109,10 +106,10 @@ func (s *Service) translateAWSToPodAssociation(assocs []*eks.PodIdentityAssociat
 
 	for _, assoc := range assocs {
 		c := ekspodidentities.EKSPodIdentityAssociation{
-			ServiceAccountName:      assoc.ServiceAccount,
-			ServiceAccountNamespace: assoc.Namespace,
-			RoleARN:                 assoc.AssociationArn,
-			AssociationID:           assoc.AssociationId,
+			ServiceAccountName:      *assoc.ServiceAccount,
+			ServiceAccountNamespace: *assoc.Namespace,
+			RoleARN:                 *assoc.AssociationArn,
+			AssociationID:           *assoc.AssociationId,
 		}
 
 		converted = append(converted, c)
