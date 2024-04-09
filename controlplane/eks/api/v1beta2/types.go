@@ -278,7 +278,7 @@ type OIDCIdentityProviderConfig struct {
 	Tags infrav1.Tags `json:"tags,omitempty"`
 }
 
-// PodIdentityAssociation represents an association between a Kubernetes Service Account in a namespace, and an AWS IAM role which has "pods.eks.amazonaws.com" as a service principal.
+// PodIdentityAssociation represents an association between a Kubernetes Service Account in a namespace, and an AWS IAM role which allows the service principal `pods.eks.amazonaws.com` in its trust policy.
 type PodIdentityAssociation struct {
 	// ServiceAccountName is the name of the kubernetes Service Account within the namespace
 	// +kubebuilder:validation:Required
