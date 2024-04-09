@@ -55,8 +55,8 @@ const (
 const (
 	// EKSPodIdentityAssociationConfiguredCondition condition reports on the successful reconciliation of EKS pod identity associations.
 	EKSPodIdentityAssociationConfiguredCondition clusterv1.ConditionType = "EKSPodIdentityAssociationConfigured"
-	// EKSPodIdentityAssociationFailedReason used to report failures while reconciling the EKS pod identity associations.
-	EKSPodIdentityAssociationFailedReason = "EKSPodIdentityAssociationConfiguredFailed"
+	// EKSPodIdentityAssociationFailedReason is used to report failures while reconciling the EKS pod identity associations.
+	EKSPodIdentityAssociationFailedReason = "EKSPodIdentityAssociationConfigurationFailed"
 )
 
 const (
