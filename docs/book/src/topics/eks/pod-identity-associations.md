@@ -6,7 +6,7 @@
 
 ### Setting up the IAM role in AWS
 
-Outside of CAPI/CAPA, you must first create an IAM Role which has the `pods.eks.amazonaws.com` service principal. EKS Identities trust relationships must also include the `sts:TagSession` permission (on top of the `sts:AssumeRole` permission).
+Outside of CAPI/CAPA, you must first create an IAM Role which allows the `pods.eks.amazonaws.com` service principal in the trust policy. EKS Identities trust relationships must also include the `sts:TagSession` permission (on top of the `sts:AssumeRole` permission).
 
 This is a sample trust policy which allows a kubernetes service account to assume this role (`capi-test-role`).
 
