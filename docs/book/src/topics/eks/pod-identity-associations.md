@@ -59,9 +59,8 @@ spec:
         roleARN: arn:aws:iam::MY_AWS_ACCOUNT_ID:role/capi-test-role
 ```
 
-- `serviceAccountNamespace` is the namespace which the kubernetes service account exists.
-- `serviceAccountName` is the name of the kubernetes service account. You can check this out with `kubectl get serviceaccount -n SERVICE_NAMESPACE` where `SERVICE_NAMESPACE` is the namespace from above
-- `serviceAccountRoleARN` is the AWS ARN for the role you created in step 1 (`capi-test-role`). Be sure to copy this exactly from your AWS console (`IAM > Roles`) if you are unsure
+- `serviceAccount.namespace` and `serviceAccount.name` refer to the [`ServiceAccount`](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/) object in the Kubernetes cluster
+- `serviceAccount.roleARN` is the AWS ARN for the IAM role you created in step 1 (named `capi-test-role` in this tutorial). Make sure to copy this exactly from your AWS console (`IAM > Roles`).
 
 To use the same role across multiple service accounts, or namespaces, you must create multiple associations.
 
