@@ -27,26 +27,15 @@ This is a sample trust policy which allows a kubernetes service account to assum
 ### Installing the EKS Pod Identity Agent
 
 The EKS Pod Identity Agent can be installed as a Managed Add-on through the AWS Console, or through CAPA.
-To add the addon through CAPA, add the following addon to your `AWSManagedControlPlane` spec under `.spec.addons`. Please ensure that the version is up to date, according to the [addons section](addons.md)
+To install the addon through CAPA, add it to `AWSManagedControlPlane`. Please ensure that the version is up to date, according to the [addons section](addons.md).
 
 ```yaml
-- conflictResolution: overwrite
-  name: eks-pod-identity-agent
-  version: v1.1.0-eksbuild.1
-```
-
-The following is not fully specified, but is intended as an example of where to add the addon, in your `AWSManagedControlPlane` CRD.
-
-```yaml
+# [...]
 kind: AWSManagedControlPlane
-apiVersion: controlplane.cluster.x-k8s.io/v1beta1
-metadata:
-  name: "capi-managed-test"
 spec:
-  region: "eu-west-2"
-  sshKeyName: "capi-management"
-  version: "v1.27.0"
+  # [...]
   addons:
+    # [...]
     - conflictResolution: overwrite
       name: eks-pod-identity-agent
       version: v1.1.0-eksbuild.1
